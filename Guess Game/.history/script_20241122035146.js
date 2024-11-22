@@ -48,8 +48,9 @@ checkBtn.addEventListener('click',function(){
                score=0;
                displayMessage('You lost the game!');
                scoreBox.textContent=score;
-              highscoreBox.textContent=0;
+              
                 setTimeout(function() {
+                displayMessage('Start guessing...');
                    again()
                 }, 2000);
             

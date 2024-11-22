@@ -48,17 +48,14 @@ checkBtn.addEventListener('click',function(){
                score=0;
                displayMessage('You lost the game!');
                scoreBox.textContent=score;
-              highscoreBox.textContent=0;
-                setTimeout(function() {
-                   again()
-                }, 2000);
-            
+               highscoreBox.textContent=score;
        }
     }
 });
 
-againBtn.addEventListener('click', again);
-
+againBtn.addEventListener('click', function(){
+   
+})
 function again(){
     score=20;
     scoreBox.textContent=score;

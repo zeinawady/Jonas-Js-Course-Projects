@@ -48,18 +48,12 @@ checkBtn.addEventListener('click',function(){
                score=0;
                displayMessage('You lost the game!');
                scoreBox.textContent=score;
-              highscoreBox.textContent=0;
-                setTimeout(function() {
-                   again()
-                }, 2000);
-            
+               highscoreBox.textContent=score;
        }
     }
 });
 
-againBtn.addEventListener('click', again);
-
-function again(){
+againBtn.addEventListener('click', function(){
     score=20;
     scoreBox.textContent=score;
     randSecretNum=Math.ceil(Math.random() * 20) + 1;
@@ -68,5 +62,8 @@ function again(){
     body.style.backgroundColor='#222';
     numberBox.textContent='?';
     numberBox.style.width='15rem';
+})
+function again(){
+    
 }
 
