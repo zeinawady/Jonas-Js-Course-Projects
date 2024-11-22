@@ -1,4 +1,5 @@
 'use strict';
+let message=document.querySelector('.message');
 let numberBox=document.querySelector('.number');
 let scoreBox=document.querySelector('.score');
 let body=document.querySelector('body');
@@ -13,7 +14,7 @@ let score=20;
 scoreBox.textContent=score;
 
 const displayMessage=function(msg){
-    document.querySelector('.message').textContent=msg;
+    message.textContent=msg;
 }
 checkBtn.addEventListener('click',function(){
     let guess=Number(guessBox.value);
@@ -23,10 +24,11 @@ checkBtn.addEventListener('click',function(){
     if(!guess){
         displayMessage('⛔ No Number!');
     }
-    
     //win
     else if(guess===randSecretNum){
      displayMessage('🥳 Correct Number!');
+    //  score++;
+    //  scoreBox.textContent=score;
      numberBox.textContent=randSecretNum;
      body.style.backgroundColor='#60b347';
      numberBox.style.width='30rem';
@@ -36,10 +38,10 @@ checkBtn.addEventListener('click',function(){
         highscoreBox.textContent=score;
      }
     }
-
+    //wrong -> high
     else if(guess!==randSecretNum){
        if(score>1){
-           displayMessage((guess > randSecretNum) ? '📈 Too High!':'📉 Too Low');
+           displayMessage = (guess > randSecretNum) ? '📈 Too High!':'📉 Too Low';
            score--;
            scoreBox.textContent=score;
 

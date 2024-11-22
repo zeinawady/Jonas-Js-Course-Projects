@@ -1,65 +1,65 @@
 'use strict';
+let message=document.querySelector('.message');
 let numberBox=document.querySelector('.number');
 let scoreBox=document.querySelector('.score');
 let body=document.querySelector('body');
 let againBtn=document.querySelector('.again');
 let checkBtn=document.querySelector('.check');
 let guessBox=document.querySelector('.guess');
-let highscoreBox=document.querySelector('.highscore');
-let randSecretNum=Math.ceil(Math.random() * 20);
+let randSecretNum=Math.ceil(Math.random() * 20) + 1;
 
 //score initialy = 20
-let score=20;
-scoreBox.textContent=score;
+scoreBox.textContent=20;
 
-const displayMessage=function(msg){
-    document.querySelector('.message').textContent=msg;
-}
 checkBtn.addEventListener('click',function(){
     let guess=Number(guessBox.value);
     console.log(guess);
 
-    //no number
+    //invalid
     if(!guess){
-        displayMessage('⛔ No Number!');
+        message.textContent='⛔ No Number!';
     }
-    
     //win
     else if(guess===randSecretNum){
-     displayMessage('🥳 Correct Number!');
+     message.textContent='🥳 Correct Number!';
+     scoreBox.textContent++;
      numberBox.textContent=randSecretNum;
      body.style.backgroundColor='#60b347';
      numberBox.style.width='30rem';
-
-     if(Number(highscoreBox.textContent)<score){
-        
-        highscoreBox.textContent=score;
-     }
     }
-
-    else if(guess!==randSecretNum){
-       if(score>1){
-           displayMessage((guess > randSecretNum) ? '📈 Too High!':'📉 Too Low');
-           score--;
-           scoreBox.textContent=score;
-
-       }
-       else{
-               score=0;
-               displayMessage('You lost the game!');
-               scoreBox.textContent=score;
-       }
+    //wrong -> high
+    else if(guess> randSecretNum){
+        if(scoreBox.textContent>1){
+            message.textContent='📈 Too High!';
+            scoreBox.textContent--;
+        }
+        else{
+            scoreBox.textContent=0;
+            message.textContent='You lost the game!'
+        }
+        
+    }
+    //wrong -> low
+    else{
+        if(scoreBox.textContent>1){
+            message.textContent='📉 Too Low'
+            scoreBox.textContent--;
+        }
+        else{
+            score.textContent=0;
+            message.textContent='You lost the game!'
+        }
+        
+       
     }
 });
 
 againBtn.addEventListener('click', function(){
-    score=20;
-    scoreBox.textContent=score;
+    score.textContent=20;
     randSecretNum=Math.ceil(Math.random() * 20) + 1;
     message.textContent='Start guessing...';
     guessBox.value=null;
     body.style.backgroundColor='#222';
-    numberBox.textContent='?';
     numberBox.style.width='15rem';
 })
 

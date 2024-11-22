@@ -1,4 +1,5 @@
 'use strict';
+let message=document.querySelector('.message');
 let numberBox=document.querySelector('.number');
 let scoreBox=document.querySelector('.score');
 let body=document.querySelector('body');
@@ -12,21 +13,20 @@ let randSecretNum=Math.ceil(Math.random() * 20);
 let score=20;
 scoreBox.textContent=score;
 
-const displayMessage=function(msg){
-    document.querySelector('.message').textContent=msg;
-}
+
 checkBtn.addEventListener('click',function(){
     let guess=Number(guessBox.value);
     console.log(guess);
 
     //no number
     if(!guess){
-        displayMessage('⛔ No Number!');
+        message.textContent='⛔ No Number!';
     }
-    
     //win
     else if(guess===randSecretNum){
-     displayMessage('🥳 Correct Number!');
+     message.textContent='🥳 Correct Number!';
+    //  score++;
+    //  scoreBox.textContent=score;
      numberBox.textContent=randSecretNum;
      body.style.backgroundColor='#60b347';
      numberBox.style.width='30rem';
@@ -36,20 +36,8 @@ checkBtn.addEventListener('click',function(){
         highscoreBox.textContent=score;
      }
     }
-
-    else if(guess!==randSecretNum){
-       if(score>1){
-           displayMessage((guess > randSecretNum) ? '📈 Too High!':'📉 Too Low');
-           score--;
-           scoreBox.textContent=score;
-
-       }
-       else{
-               score=0;
-               displayMessage('You lost the game!');
-               scoreBox.textContent=score;
-       }
-    }
+    //wrong -> high
+    if(score)
 });
 
 againBtn.addEventListener('click', function(){

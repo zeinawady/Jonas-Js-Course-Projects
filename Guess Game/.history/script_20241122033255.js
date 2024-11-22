@@ -23,7 +23,6 @@ checkBtn.addEventListener('click',function(){
     if(!guess){
         displayMessage('⛔ No Number!');
     }
-    
     //win
     else if(guess===randSecretNum){
      displayMessage('🥳 Correct Number!');
@@ -36,7 +35,6 @@ checkBtn.addEventListener('click',function(){
         highscoreBox.textContent=score;
      }
     }
-
     else if(guess!==randSecretNum){
        if(score>1){
            displayMessage((guess > randSecretNum) ? '📈 Too High!':'📉 Too Low');
